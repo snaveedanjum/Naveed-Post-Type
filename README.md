@@ -2,7 +2,7 @@
 An elegant way to create custom post types and custom taxonomies in WordPress.
 
 * Contributors: snaveedanjum
-* Tags: custom post types, CPT, CMS, post, types, post type, taxonomy, tax, custom, content types, post types
+* Tags: 'custom post types, CPT, CMS, post, types, post type, taxonomy, tax, custom, content types, post types'
 * Requires at least: 5.9
 * Tested up to: 6.0.2
 * Stable Version: 1.0.0
