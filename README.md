@@ -1,5 +1,6 @@
 # Naveed-Post-Type
-An elegant way to create custom post types and custom taxonomies in WordPress
+An elegant way to create custom post types and custom taxonomies in WordPress.
+
 Contributors: snaveedanjum
 Tags: custom post types, CPT, CMS, post, types, post type, taxonomy, tax, custom, content types, post types
 Requires at least: 5.9
@@ -8,24 +9,22 @@ Stable tag: 1.0.0
 License: GPL-2.0+
 Requires PHP: 5.6
 
-Naveed Post Types is an elegant way to create custom post types and custom taxonomies in WordPress
-
-== Description ==
+## Description
 
 Naveed Post Types provides an easy to use interface for registering and managing custom post types and taxonomies for your website.
 
-= Plugin development =
+## Plugin development
 
 Naveed Post Types development is managed on GitHub, with official releases published on WordPress.org. The GitHub repo can be found at [https://github.com/snaveedanjum/Naveed-Post-Type](https://github.com/snaveedanjum/Naveed-Post-Type).
 
-== Changelog ==
+## Changelog
 
-= 1.0.0 =
+###  1.0.0
 * Our first stable version.
 
 
 
-== Installation ==
+## Installation
 
 = Admin Installer via search =
 1. Visit the Add New plugin screen and search for "Naveed Post Types".
@@ -33,13 +32,13 @@ Naveed Post Types development is managed on GitHub, with official releases publi
 3. Activate the plugin.
 4. Navigate to the "Post Types" Menu.
 
-= Admin Installer via zip =
+## Admin Installer via zip
 1. Visit the Add New plugin screen and click the "Upload Plugin" button.
 2. Click the "Browse..." button and select zip file from your computer.
 3. Click "Install Now" button.
 4. Once done uploading, activate Naveed Post Types.
 
-= Manual =
+## Manual
 1. Upload the Naveed Post Types folder to the plugins directory in your WordPress installation.
 2. Activate the plugin.
 3. Navigate to the "Post Types" Menu.
