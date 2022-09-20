@@ -26,7 +26,7 @@ Naveed Post Types development is managed on GitHub, with official releases publi
 
 ## Installation
 
-### Admin Installer via search =
+### Admin Installer via search
 1. Visit the Add New plugin screen and search for "Naveed Post Types".
 2. Click the "Install Now" button.
 3. Activate the plugin.
