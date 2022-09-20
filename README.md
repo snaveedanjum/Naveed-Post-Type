@@ -26,19 +26,19 @@ Naveed Post Types development is managed on GitHub, with official releases publi
 
 ## Installation
 
-= Admin Installer via search =
+### Admin Installer via search =
 1. Visit the Add New plugin screen and search for "Naveed Post Types".
 2. Click the "Install Now" button.
 3. Activate the plugin.
 4. Navigate to the "Post Types" Menu.
 
-## Admin Installer via zip
+### Admin Installer via zip
 1. Visit the Add New plugin screen and click the "Upload Plugin" button.
 2. Click the "Browse..." button and select zip file from your computer.
 3. Click "Install Now" button.
 4. Once done uploading, activate Naveed Post Types.
 
-## Manual
+### Manual
 1. Upload the Naveed Post Types folder to the plugins directory in your WordPress installation.
 2. Activate the plugin.
 3. Navigate to the "Post Types" Menu.
