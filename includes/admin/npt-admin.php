@@ -68,32 +68,23 @@ if ( ! class_exists( 'NPT_Admin' ) ) :
 				add_action( 'in_admin_header', array( $this, 'npt_admin_header' ) );
 			}
 		}
-
+		
 		/**
-		 * Modifies the admin footer text.
-		 *
+		 * Print admin bar
 		 * @since   1.0.0
-		 *
-		 * @param string $text The admin footer text.
-		 *
-		 * @return  string
+		 * @return  void
 		 */
 		function npt_admin_header() {
-			global $pagenow;
-			$npt_url = npt_get_setting('url' );
-			$npt_home_url         = admin_url( 'admin.php?page=naveed-post-types' );
-			$npt_post_type_url     = admin_url( 'edit.php?post_type=npt-post-type' );
-			$npt_taxonomy_url = admin_url( 'edit.php?post_type=npt-taxonomy' );
 			$screen = get_current_screen();
 			?>
 			<div class = "npt-admin-bar" id="poststuff">
 				<div class="npt-header">
 					<div class="npt-container npt-flex">
-						<img src="<?php echo $npt_url . 'assets/images/npt-logo.svg'; ?>"><h1>Naveed Post Types</h1>
+						<img src="<?php echo npt_get_setting('url' ) . 'assets/images/npt-logo.svg'; ?>"><h1>Naveed Post Types</h1>
 						<ul class="npt-nav-list">
-							<li class="nav-item <?php if ( $screen->id == 'toplevel_page_naveed-post-types' ) { echo'active'; } ?>"><a href="<?php echo $npt_home_url; ?>">Home</a></li>
-							<li class="nav-item <?php if ( $screen->id == 'edit-npt-post-type' || $screen->id == 'npt-post-type' ) { echo'active'; } ?>"><a href="<?php echo $npt_post_type_url; ?>">Post Types</a></li>
-							<li class="nav-item <?php if ( $screen->id == 'edit-npt-taxonomy' || $screen->id == 'npt-taxonomy'  ) { echo'active'; } ?>"><a href="<?php echo $npt_taxonomy_url; ?>">Taxonomies</a></li>
+							<li class="nav-item <?php if ( $screen->id == 'toplevel_page_naveed-post-types' ) { echo'active'; } ?>"><a href="<?php echo admin_url( 'admin.php?page=naveed-post-types' ); ?>">Home</a></li>
+							<li class="nav-item <?php if ( $screen->id == 'edit-npt-post-type' || $screen->id == 'npt-post-type' ) { echo'active'; } ?>"><a href="<?php echo admin_url( 'edit.php?post_type=npt-post-type' ); ?>">Post Types</a></li>
+							<li class="nav-item <?php if ( $screen->id == 'edit-npt-taxonomy' || $screen->id == 'npt-taxonomy'  ) { echo'active'; } ?>"><a href="<?php echo admin_url( 'edit.php?post_type=npt-taxonomy' ); ?>">Taxonomies</a></li>
 						</ul>
 					</div>
 				</div>

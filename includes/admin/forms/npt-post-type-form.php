@@ -4,33 +4,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
-
+	
 	class NPT_Post_Type_Form extends NPT_Fields {
-
+		
 		/**
 		 * input fields attributes for register post type metabox
 		 * fields will be generated according to following given attributes
-		 *
 		 * @since   1.0.0
-		 *
 		 * @return array[]
 		 */
 		public function npt_post_type_register_fields() {
 			global $post;
 			/**
 			 * @since   1.0.0
-			 *
 			 * @var array $post_type
 			 */
 			$post_type = get_post_meta( $post->ID, 'npt_post_type', true );
-
+			
 			return $args = array(
 				'slug'          => array(
 					'label'             => esc_html__( 'Slug', 'npt' ),
 					'type'              => 'text',
 					'field'             => 'arguments',
 					'group'             => 'register',
-					'value'             => isset( $post_type['slug'] ) ? $post_type['slug'] : '',
+					'value'             => isset( $post_type[ 'slug' ] ) ? esc_attr( $post_type[ 'slug' ] ) : '',
 					'key'               => 'slug',
 					'name'              => 'slug',
 					'id'                => 'slug',
@@ -51,7 +48,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'singular-name',
 					'placeholder'       => '(e.g. Book)',
 					'label_description' => esc_html__( 'Singular name for one object of this post type.', 'npt' ),
-					'value'             => isset( $post_type['labels']['singular_name'] ) ? $post_type['labels']['singular_name'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'singular_name' ] ) ? esc_attr( $post_type[ 'labels' ][ 'singular_name' ] ) : '',
 					'required'          => true,
 					'wrap'              => true,
 				),
@@ -65,7 +62,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'name',
 					'placeholder'       => '(e.g. Books)',
 					'label_description' => esc_html__( 'General plural name for the post type.', 'npt' ),
-					'value'             => isset( $post_type['labels']['name'] ) ? $post_type['labels']['name'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'name' ] ) ? esc_attr( $post_type[ 'labels' ][ 'name' ] ) : '',
 					'required'          => true,
 					'wrap'              => true,
 				),
@@ -79,7 +76,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'menu-icon',
 					'class'             => 'form-control icon-field',
 					'label_description' => esc_html__( 'Icon of the post type shown in the menu.', 'npt' ),
-					'value'             => isset( $post_type['menu_icon'] ) ? $post_type['menu_icon'] : '',
+					'value'             => isset( $post_type[ 'menu_icon' ] ) ? esc_attr( $post_type[ 'menu_icon' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 				),
@@ -92,33 +89,30 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'name'              => 'description',
 					'id'                => 'description',
 					'label_description' => esc_html__( 'A short descriptive summary of what the post type is.', 'npt' ),
-					'value'             => isset( $post_type['description'] ) ? $post_type['description'] : '',
+					'value'             => isset( $post_type[ 'description' ] ) ? esc_attr( $post_type[ 'description' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 				),
-
+			
 			);
 		}
-
+		
 		/**
 		 * input fields attributes for post type labels metabox
 		 * fields will be generated according to following given attributes
-		 *
 		 * @since   1.0.0
-		 *
 		 * @return array[]
 		 */
 		public function npt_post_type_labels_fields() {
 			global $post;
 			/**
 			 * @since   1.0.0
-			 *
 			 * @var array $post_type
 			 */
 			$post_type = get_post_meta( $post->ID, 'npt_post_type', true );
-
+			
 			return $args = array(
-
+				
 				'buttons'                  => array(
 					'label'             => esc_html__( 'Auto Populate labels', 'npt' ),
 					'type'              => 'button',
@@ -142,7 +136,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'menu-name',
 					'placeholder'       => '(e.g. Books)',
 					'label_description' => esc_html__( 'Label for the menu name.', 'npt' ),
-					'value'             => isset( $post_type['labels']['menu_name'] ) ? $post_type['labels']['menu_name'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'menu_name' ] ) ? esc_attr( $post_type[ 'labels' ][ 'menu_name' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -160,7 +154,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'add-new',
 					'placeholder'       => '(e.g. Add New)',
 					'label_description' => esc_html__( 'Used in the admin menu for displaying post types.', 'npt' ),
-					'value'             => isset( $post_type['labels']['add_new'] ) ? $post_type['labels']['add_new'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'add_new' ] ) ? esc_attr( $post_type[ 'labels' ][ 'add_new' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -178,7 +172,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'add-new-item',
 					'placeholder'       => '(e.g. Add New Book)',
 					'label_description' => esc_html__( 'Label for adding a new singular post type.', 'npt' ),
-					'value'             => isset( $post_type['labels']['add_new_item'] ) ? $post_type['labels']['add_new_item'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'add_new_item' ] ) ? esc_attr( $post_type[ 'labels' ][ 'add_new_item' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -196,7 +190,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'edit-item',
 					'placeholder'       => '(e.g. Edit Book)',
 					'label_description' => esc_html__( 'Label for editing a singular post type.', 'npt' ),
-					'value'             => isset( $post_type['labels']['edit_item'] ) ? $post_type['labels']['edit_item'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'edit_item' ] ) ? esc_attr( $post_type[ 'labels' ][ 'edit_item' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -214,7 +208,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'new-item',
 					'placeholder'       => '(e.g. New Book)',
 					'label_description' => esc_html__( 'Label for the new post type page title.', 'npt' ),
-					'value'             => isset( $post_type['labels']['new_item'] ) ? $post_type['labels']['new_item'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'new_item' ] ) ? esc_attr( $post_type[ 'labels' ][ 'new_item' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -232,7 +226,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'view-item',
 					'placeholder'       => '(e.g. View Book)',
 					'label_description' => esc_html__( 'Label for viewing a singular post type.', 'npt' ),
-					'value'             => isset( $post_type['labels']['view_item'] ) ? $post_type['labels']['view_item'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'view_item' ] ) ? esc_attr( $post_type[ 'labels' ][ 'view_item' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -250,7 +244,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'view-items',
 					'placeholder'       => '(e.g. View Books)',
 					'label_description' => esc_html__( 'Label for viewing post type archives.', 'npt' ),
-					'value'             => isset( $post_type['labels']['view_items'] ) ? $post_type['labels']['view_items'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'view_items' ] ) ? esc_attr( $post_type[ 'labels' ][ 'view_items' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -268,7 +262,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'search-items',
 					'placeholder'       => '(e.g. Search Books)',
 					'label_description' => esc_html__( 'Label for searching plural items.', 'npt' ),
-					'value'             => isset( $post_type['labels']['search_items'] ) ? $post_type['labels']['search_items'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'search_items' ] ) ? esc_attr( $post_type[ 'labels' ][ 'search_items' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -286,7 +280,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'not-found',
 					'placeholder'       => '(e.g. No books found)',
 					'label_description' => esc_html__( 'Label used when no post types are found.', 'npt' ),
-					'value'             => isset( $post_type['labels']['not_found'] ) ? $post_type['labels']['not_found'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'not_found' ] ) ? esc_attr( $post_type[ 'labels' ][ 'not_found' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -304,7 +298,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'not-found-in-trash',
 					'placeholder'       => '(e.g. No books found in Trash)',
 					'label_description' => esc_html__( 'Label used when no post types are in the Trash.', 'npt' ),
-					'value'             => isset( $post_type['labels']['not_found_in_trash'] ) ? $post_type['labels']['not_found_in_trash'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'not_found_in_trash' ] ) ? esc_attr( $post_type[ 'labels' ][ 'not_found_in_trash' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -322,7 +316,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'parent-item-colon',
 					'placeholder'       => '(e.g. Parent Book:)',
 					'label_description' => esc_html__( 'Label used to prefix parents of hierarchical post types.', 'npt' ),
-					'value'             => isset( $post_type['labels']['parent_item_colon'] ) ? $post_type['labels']['parent_item_colon'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'parent_item_colon' ] ) ? esc_attr( $post_type[ 'labels' ][ 'parent_item_colon' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -340,7 +334,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'all-items',
 					'placeholder'       => '(e.g. All Books )',
 					'label_description' => esc_html__( 'Label to signify all post types in a submenu link.', 'npt' ),
-					'value'             => isset( $post_type['labels']['all_items'] ) ? $post_type['labels']['all_items'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'all_items' ] ) ? esc_attr( $post_type[ 'labels' ][ 'all_items' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -358,7 +352,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'archives',
 					'placeholder'       => '(e.g. Book Archives )',
 					'label_description' => esc_html__( 'Label for archives in nav menus.', 'npt' ),
-					'value'             => isset( $post_type['labels']['archives'] ) ? $post_type['labels']['archives'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'archives' ] ) ? esc_attr( $post_type[ 'labels' ][ 'archives' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -376,7 +370,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'attributes',
 					'placeholder'       => '(e.g. Book Attributes )',
 					'label_description' => esc_html__( 'Label for the attributes meta box.', 'npt' ),
-					'value'             => isset( $post_type['labels']['attributes'] ) ? $post_type['labels']['attributes'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'attributes' ] ) ? esc_attr( $post_type[ 'labels' ][ 'attributes' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -394,7 +388,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'insert-into-item',
 					'placeholder'       => '(e.g. Insert into book )',
 					'label_description' => esc_html__( 'Label for the media frame button.', 'npt' ),
-					'value'             => isset( $post_type['labels']['insert_into_item'] ) ? $post_type['labels']['insert_into_item'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'insert_into_item' ] ) ? esc_attr( $post_type[ 'labels' ][ 'insert_into_item' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -412,7 +406,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'uploaded-to-this-item',
 					'placeholder'       => '(e.g. Uploaded to this book )',
 					'label_description' => esc_html__( 'Label for the media frame filter.', 'npt' ),
-					'value'             => isset( $post_type['labels']['uploaded_to_this_item'] ) ? $post_type['labels']['uploaded_to_this_item'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'uploaded_to_this_item' ] ) ? esc_attr( $post_type[ 'labels' ][ 'uploaded_to_this_item' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -430,7 +424,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'featured-image',
 					'placeholder'       => '(e.g. Book featured image )',
 					'label_description' => esc_html__( 'Label for the featured image meta box title.', 'npt' ),
-					'value'             => isset( $post_type['labels']['featured_image'] ) ? $post_type['labels']['featured_image'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'featured_image' ] ) ? esc_attr( $post_type[ 'labels' ][ 'featured_image' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -448,7 +442,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'set-featured-image',
 					'placeholder'       => '(e.g. Set book featured image )',
 					'label_description' => esc_html__( 'Label for setting the featured image.', 'npt' ),
-					'value'             => isset( $post_type['labels']['set_featured_image'] ) ? $post_type['labels']['set_featured_image'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'set_featured_image' ] ) ? esc_attr( $post_type[ 'labels' ][ 'set_featured_image' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -466,7 +460,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'remove-featured-image',
 					'placeholder'       => '(e.g. Remove book featured image )',
 					'label_description' => esc_html__( 'Label for removing the featured image.', 'npt' ),
-					'value'             => isset( $post_type['labels']['remove_featured_image'] ) ? $post_type['labels']['remove_featured_image'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'remove_featured_image' ] ) ? esc_attr( $post_type[ 'labels' ][ 'remove_featured_image' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -484,7 +478,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'use-featured-image',
 					'placeholder'       => '(e.g. Use book featured image )',
 					'label_description' => esc_html__( 'Label in the media frame for using a featured image.', 'npt' ),
-					'value'             => isset( $post_type['labels']['use_featured_image'] ) ? $post_type['labels']['use_featured_image'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'use_featured_image' ] ) ? esc_attr( $post_type[ 'labels' ][ 'use_featured_image' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -502,7 +496,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'filter-items-list',
 					'placeholder'       => '(e.g. Filter book list )',
 					'label_description' => esc_html__( 'Label for the table views hidden heading.', 'npt' ),
-					'value'             => isset( $post_type['labels']['filter_items_list'] ) ? $post_type['labels']['filter_items_list'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'filter_items_list' ] ) ? esc_attr( $post_type[ 'labels' ][ 'filter_items_list' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -520,7 +514,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'items-list-navigation',
 					'placeholder'       => '(e.g. Books list navigation )',
 					'label_description' => esc_html__( 'Label for the table pagination hidden heading.', 'npt' ),
-					'value'             => isset( $post_type['labels']['items_list_navigation'] ) ? $post_type['labels']['items_list_navigation'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'items_list_navigation' ] ) ? esc_attr( $post_type[ 'labels' ][ 'items_list_navigation' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -538,7 +532,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'items-list',
 					'placeholder'       => '(e.g. Books list )',
 					'label_description' => esc_html__( 'Label for the table hidden heading.', 'npt' ),
-					'value'             => isset( $post_type['labels']['items_list'] ) ? $post_type['labels']['items_list'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'items_list' ] ) ? esc_attr( $post_type[ 'labels' ][ 'items_list' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -556,7 +550,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'item-published',
 					'placeholder'       => '(e.g. Book published )',
 					'label_description' => esc_html__( 'Label used when a post type is published.', 'npt' ),
-					'value'             => isset( $post_type['labels']['item_published'] ) ? $post_type['labels']['item_published'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'item_published' ] ) ? esc_attr( $post_type[ 'labels' ][ 'item_published' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -574,7 +568,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'item-published-privately',
 					'placeholder'       => '(e.g. Book published privately )',
 					'label_description' => esc_html__( 'Label used when a post type is published with private visibility.', 'npt' ),
-					'value'             => isset( $post_type['labels']['item_published_privately'] ) ? $post_type['labels']['item_published_privately'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'item_published_privately' ] ) ? esc_attr( $post_type[ 'labels' ][ 'item_published_privately' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -592,7 +586,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'reverted-to-draft',
 					'placeholder'       => '(e.g. Book reverted to draft )',
 					'label_description' => esc_html__( 'Label used when a post type is switched to a draft.', 'npt' ),
-					'value'             => isset( $post_type['labels']['item_reverted_to_draft'] ) ? $post_type['labels']['item_reverted_to_draft'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'item_reverted_to_draft' ] ) ? esc_attr( $post_type[ 'labels' ][ 'item_reverted_to_draft' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -610,7 +604,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'scheduled',
 					'placeholder'       => '(e.g. Book scheduled )',
 					'label_description' => esc_html__( 'Label used when a post type is scheduled for publishing.', 'npt' ),
-					'value'             => isset( $post_type['labels']['item_scheduled'] ) ? $post_type['labels']['item_scheduled'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'item_scheduled' ] ) ? esc_attr( $post_type[ 'labels' ][ 'item_scheduled' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -628,7 +622,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'updated',
 					'placeholder'       => '(e.g. Book updated )',
 					'label_description' => esc_html__( 'Label used when a post type is updated.', 'npt' ),
-					'value'             => isset( $post_type['labels']['item_updated'] ) ? $post_type['labels']['item_updated'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'item_updated' ] ) ? esc_attr( $post_type[ 'labels' ][ 'item_updated' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -646,7 +640,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'item-link',
 					'placeholder'       => '(e.g. Book link )',
 					'label_description' => esc_html__( 'Title for a navigation link block variation.', 'npt' ),
-					'value'             => isset( $post_type['labels']['item_link'] ) ? $post_type['labels']['item_link'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'item_link' ] ) ? esc_attr( $post_type[ 'labels' ][ 'item_link' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -664,7 +658,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'id'                => 'link-description',
 					'placeholder'       => '(e.g. A link to a book )',
 					'label_description' => esc_html__( 'Description for a navigation link block variation.', 'npt' ),
-					'value'             => isset( $post_type['labels']['item_link_description'] ) ? $post_type['labels']['item_link_description'] : '',
+					'value'             => isset( $post_type[ 'labels' ][ 'item_link_description' ] ) ? esc_attr( $post_type[ 'labels' ][ 'item_link_description' ] ) : '',
 					'required'          => false,
 					'wrap'              => true,
 					'data'              => array(
@@ -672,44 +666,41 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 						'field' => 'slug',
 					),
 				),
-
+			
 			);
 		}
-
+		
 		/**
 		 * input fields attributes for post type arguments metabox
 		 * fields will be generated according to following given attributes
-		 *
 		 * @since   1.0.0
-		 *
 		 * @return array[]
 		 */
 		public function npt_post_type_arguments_fields() {
 			global $post;
 			/**
 			 * @since   1.0.0
-			 *
 			 * @var array $post_type
 			 */
-			$post_type = get_post_meta( $post->ID, 'npt_post_type', true );
+			$post_type      = get_post_meta( $post->ID, 'npt_post_type', true );
 			$npt_taxonomies = npt_get_object_taxonomies( $post_type );
-			if ($npt_taxonomies){
+			if ( $npt_taxonomies ) {
 				$add_more_text = '+ Add More NPT Taxonomies';
-			} else{
+			} else {
 				$add_more_text = '+ Add NPT Taxonomies';
 			}
-			$default   = false;
+			$default = false;
 			if ( get_current_screen()->action == 'add' ) {
 				$default = true;
 			}
-
+			
 			return $args = array(
 				'public'                => array(
 					'label'             => esc_html__( 'Public', 'npt' ),
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['public'] ) ? $post_type['public'] : false,
+					'value'             => isset( $post_type[ 'public' ] ) ? esc_attr( $post_type[ 'public' ] ) : false,
 					'key'               => 'public',
 					'name'              => 'public',
 					'id'                => 'public',
@@ -726,7 +717,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['hierarchical'] ) ? $post_type['hierarchical'] : false,
+					'value'             => isset( $post_type[ 'hierarchical' ] ) ? esc_attr( $post_type[ 'hierarchical' ] ) : false,
 					'key'               => 'hierarchical',
 					'name'              => 'hierarchical',
 					'id'                => 'hierarchical',
@@ -743,7 +734,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['exclude_from_search'] ) ? $post_type['exclude_from_search'] : false,
+					'value'             => isset( $post_type[ 'exclude_from_search' ] ) ? esc_attr( $post_type[ 'exclude_from_search' ] ) : false,
 					'key'               => 'exclude_from_search',
 					'name'              => 'exclude-from-search',
 					'id'                => 'exclude-from-search',
@@ -760,7 +751,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['publicly_queryable'] ) ? $post_type['publicly_queryable'] : false,
+					'value'             => isset( $post_type[ 'publicly_queryable' ] ) ? esc_attr( $post_type[ 'publicly_queryable' ] ) : false,
 					'key'               => 'publicly_queryable',
 					'name'              => 'publicly-queryable',
 					'id'                => 'publicly-queryable',
@@ -777,7 +768,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['show_ui'] ) ? $post_type['show_ui'] : false,
+					'value'             => isset( $post_type[ 'show_ui' ] ) ? esc_attr( $post_type[ 'show_ui' ] ) : false,
 					'key'               => 'show_ui',
 					'name'              => 'show-ui',
 					'id'                => 'show-ui',
@@ -794,7 +785,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['show_in_menu'] ) ? $post_type['show_in_menu'] : false,
+					'value'             => isset( $post_type[ 'show_in_menu' ] ) ? esc_attr( $post_type[ 'show_in_menu' ] ) : false,
 					'key'               => 'show_in_menu',
 					'name'              => 'show-in-menu',
 					'id'                => 'show-in-menu',
@@ -811,7 +802,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['show_in_nav_menus'] ) ? $post_type['show_in_nav_menus'] : false,
+					'value'             => isset( $post_type[ 'show_in_nav_menus' ] ) ? esc_attr( $post_type[ 'show_in_nav_menus' ] ) : false,
 					'key'               => 'show_in_nav_menus',
 					'name'              => 'show-in-nav-menus',
 					'id'                => 'show-in-nav-menus',
@@ -828,7 +819,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['show_in_admin_bar'] ) ? $post_type['show_in_admin_bar'] : false,
+					'value'             => isset( $post_type[ 'show_in_admin_bar' ] ) ? esc_attr( $post_type[ 'show_in_admin_bar' ] ) : false,
 					'key'               => 'show_in_admin_bar',
 					'name'              => 'show-in-admin-bar',
 					'id'                => 'show-in-admin-bar',
@@ -845,7 +836,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['show_in_rest'] ) ? $post_type['show_in_rest'] : false,
+					'value'             => isset( $post_type[ 'show_in_rest' ] ) ? esc_attr( $post_type[ 'show_in_rest' ] ) : false,
 					'key'               => 'show_in_rest',
 					'name'              => 'show-in-rest',
 					'id'                => 'show-in-rest',
@@ -862,7 +853,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'text',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['rest_base'] ) ? $post_type['rest_base'] : '',
+					'value'             => isset( $post_type[ 'rest_base' ] ) ? esc_attr( $post_type[ 'rest_base' ] ) : '',
 					'key'               => 'rest_base',
 					'name'              => 'rest-base',
 					'id'                => 'rest-base',
@@ -875,7 +866,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'text',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['rest_namespace'] ) ? $post_type['rest_namespace'] : '',
+					'value'             => isset( $post_type[ 'rest_namespace' ] ) ? esc_attr( $post_type[ 'rest_namespace' ] ) : '',
 					'key'               => 'rest_namespace',
 					'name'              => 'rest-namespace',
 					'id'                => 'rest-namespace',
@@ -888,36 +879,36 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'text',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['rest_controller_class'] ) ? $post_type['rest_controller_class'] : '',
+					'value'             => isset( $post_type[ 'rest_controller_class' ] ) ? esc_attr( $post_type[ 'rest_controller_class' ] ) : '',
 					'key'               => 'rest_controller_class',
 					'name'              => 'rest-controller-class',
 					'id'                => 'rest-controller-class',
 					'placeholder'       => 'Default: WP_REST_Posts_Controller',
-					'label_description' => 'Read more about <a target="_blank" href="https://developer.wordpress.org/reference/classes/wp_rest_posts_controller/">WP_REST_Posts_Controller</a>',
+					'label_description' => esc_html__( 'Read more about ', 'npt' ) . '<a target="_blank" href="https://developer.wordpress.org/reference/classes/wp_rest_posts_controller/">' . esc_html__( 'WP_REST_Posts_Controller', 'npt' ) . '</a>',
 					'wrap'              => true,
 				),
-				'menu_position'         => array(
+				'menu_position'         => [
 					'label'             => esc_html__( 'Menu Position', 'npt' ),
 					'type'              => 'text',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['menu_position'] ) ? $post_type['menu_position'] : '',
+					'value'             => isset( $post_type[ 'menu_position' ] ) ? esc_attr( $post_type[ 'menu_position' ] ) : '',
 					'key'               => 'menu_position',
 					'name'              => 'menu-position',
 					'id'                => 'menu-position',
-					'label_description' => 'The position in the menu order the post type should appear. </br> Range ( 5 - 100 ) Read more about <a target="_blank" href="https://developer.wordpress.org/reference/functions/register_post_type/#menu_position">Menu Position</a>',
+					'label_description' => esc_html__( 'The position in the menu order the post type should appear.', 'npt' ) . '<br>' . esc_html__( 'Range ( 5 - 100 ) Read more about ', 'npt' ) . ' <a target="_blank" href="https://developer.wordpress.org/reference/functions/register_post_type/#menu_position">' . esc_html__( 'Menu Position', 'npt' ) . '</a>',
 					'wrap'              => true,
-				),
+				],
 				'capability_type'       => array(
 					'label'             => esc_html__( 'Capability Type', 'npt' ),
 					'type'              => 'text',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['capability_type'] ) ? $post_type['capability_type'] : 'post',
+					'value'             => isset( $post_type[ 'capability_type' ] ) ? esc_attr( $post_type[ 'capability_type' ] ) : 'post',
 					'key'               => 'capability_type',
 					'name'              => 'capability-type',
 					'id'                => 'capability-type',
-					'label_description' => 'The string to use to build the read, edit, and delete capabilities.  A comma-separated second value can be used for plural version. Default value is <b>post</b>',
+					'label_description' => esc_html__( 'The string to use to build the read, edit, and delete capabilities.  A comma-separated second value can be used for plural version. Default value is ', 'npt' ) . '<b>' . esc_html__( 'post', 'npt' ) . '</b>',
 					'wrap'              => true,
 				),
 				'supports'              => array(
@@ -929,12 +920,12 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'key'               => 'supports',
 					'name'              => 'supports',
 					'id'                => 'supports',
-					'label_description' => __( 'Controls that are available in the edit screen for the post type. </br></br> By default, only the <b>Title</b> field and <b>Editor</b> are shown if you do not want any default support please check <b>None</b> option.', 'npt' ),
+					'label_description' => esc_html__( 'Controls that are available in the edit screen for the post type.', 'npt' ) . '</br></br>' . esc_html__( 'By default, only the ', 'npt' ) . '<b>' . esc_html__( 'Title ', 'npt' ) . '</b>' . esc_html__( ' field and ', 'npt' ) . '<b>' . esc_html__( 'Editor ', 'npt' ) . '</b>' . esc_html__( 'are shown if you do not want any default support please check ', 'npt' ) . '<b>' . esc_html__( 'None ', 'npt' ) . '</b>' . esc_html__( 'option.', 'npt' ),
 					'wrap'              => true,
 					'options'           => array(
 						array(
 							'value'   => 'title',
-							'checked' => isset( $post_type['supports'] ) && in_array( 'title', $post_type['supports'] ) ? 'title' : '',
+							'checked' => isset( $post_type[ 'supports' ] ) && in_array( 'title', $post_type[ 'supports' ] ) ? esc_attr( 'title' ) : '',
 							'key'     => 'title',
 							'name'    => 'title',
 							'id'      => 'title',
@@ -943,7 +934,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 						),
 						array(
 							'value'   => 'editor',
-							'checked' => isset( $post_type['supports'] ) && in_array( 'editor', $post_type['supports'] ) ? 'editor' : '',
+							'checked' => isset( $post_type[ 'supports' ] ) && in_array( 'editor', $post_type[ 'supports' ] ) ? esc_attr( 'editor' ) : '',
 							'key'     => 'editor',
 							'name'    => 'editor',
 							'id'      => 'editor',
@@ -952,7 +943,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 						),
 						array(
 							'value'   => 'thumbnail',
-							'checked' => isset( $post_type['supports'] ) && in_array( 'thumbnail', $post_type['supports'] ) ? 'thumbnail' : '',
+							'checked' => isset( $post_type[ 'supports' ] ) && in_array( 'thumbnail', $post_type[ 'supports' ] ) ? esc_attr( 'thumbnail' ) : '',
 							'key'     => 'thumbnail',
 							'name'    => 'thumbnail',
 							'id'      => 'thumbnail',
@@ -961,7 +952,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 						),
 						array(
 							'value'   => 'excerpt',
-							'checked' => isset( $post_type['supports'] ) && in_array( 'excerpt', $post_type['supports'] ) ? 'excerpt' : '',
+							'checked' => isset( $post_type[ 'supports' ] ) && in_array( 'excerpt', $post_type[ 'supports' ] ) ? esc_attr( 'excerpt' ) : '',
 							'key'     => 'excerpt',
 							'name'    => 'excerpts',
 							'id'      => 'excerpts',
@@ -970,7 +961,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 						),
 						array(
 							'value'   => 'page-attributes',
-							'checked' => isset( $post_type['supports'] ) && in_array( 'page-attributes', $post_type['supports'] ) ? 'page-attributes' : '',
+							'checked' => isset( $post_type[ 'supports' ] ) && in_array( 'page-attributes', $post_type[ 'supports' ] ) ? esc_attr( 'page-attributes' ) : '',
 							'key'     => 'page_attributes',
 							'name'    => 'page-attributes',
 							'id'      => 'page-attributes',
@@ -979,7 +970,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 						),
 						array(
 							'value'   => 'post-formats',
-							'checked' => isset( $post_type['supports'] ) && in_array( 'post-formats', $post_type['supports'] ) ? 'post-formats' : '',
+							'checked' => isset( $post_type[ 'supports' ] ) && in_array( 'post-formats', $post_type[ 'supports' ] ) ? esc_attr( 'post-formats' ) : '',
 							'key'     => 'post_formats',
 							'name'    => 'post-formats',
 							'id'      => 'post-formats',
@@ -988,7 +979,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 						),
 						array(
 							'value'   => 'author',
-							'checked' => isset( $post_type['supports'] ) && in_array( 'author', $post_type['supports'] ) ? 'author' : '',
+							'checked' => isset( $post_type[ 'supports' ] ) && in_array( 'author', $post_type[ 'supports' ] ) ? esc_attr( 'author' ) : '',
 							'key'     => 'author',
 							'name'    => 'author',
 							'id'      => 'author',
@@ -997,7 +988,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 						),
 						array(
 							'value'   => 'revisions',
-							'checked' => isset( $post_type['supports'] ) && in_array( 'revisions', $post_type['supports'] ) ? 'revisions' : '',
+							'checked' => isset( $post_type[ 'supports' ] ) && in_array( 'revisions', $post_type[ 'supports' ] ) ? esc_attr( 'revisions' ) : '',
 							'key'     => 'revisions',
 							'name'    => 'revisions',
 							'id'      => 'revisions',
@@ -1006,7 +997,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 						),
 						array(
 							'value'   => 'comments',
-							'checked' => isset( $post_type['supports'] ) && in_array( 'comments', $post_type['supports'] ) ? 'comments' : '',
+							'checked' => isset( $post_type[ 'supports' ] ) && in_array( 'comments', $post_type[ 'supports' ] ) ? esc_attr( 'comments' ) : '',
 							'key'     => 'comments',
 							'name'    => 'comments',
 							'id'      => 'comments',
@@ -1015,7 +1006,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 						),
 						array(
 							'value'   => 'custom-fields',
-							'checked' => isset( $post_type['supports'] ) && in_array( 'custom-fields', $post_type['supports'] ) ? 'custom-fields' : '',
+							'checked' => isset( $post_type[ 'supports' ] ) && in_array( 'custom-fields', $post_type[ 'supports' ] ) ? esc_attr( 'custom-fields' ) : '',
 							'key'     => 'custom_fields',
 							'name'    => 'custom-fields',
 							'id'      => 'custom-fields',
@@ -1024,7 +1015,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 						),
 						array(
 							'value'   => 'trackbacks',
-							'checked' => isset( $post_type['supports'] ) && in_array( 'trackbacks', $post_type['supports'] ) ? 'trackbacks' : '',
+							'checked' => isset( $post_type[ 'supports' ] ) && in_array( 'trackbacks', $post_type[ 'supports' ] ) ? esc_attr( 'trackbacks') : '',
 							'key'     => 'trackbacks',
 							'name'    => 'trackbacks',
 							'id'      => 'trackbacks',
@@ -1033,7 +1024,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 						),
 						array(
 							'value'   => 'none',
-							'checked' => isset( $post_type['supports'] ) && in_array( 'none', $post_type['supports'] ) ? 'none' : '',
+							'checked' => isset( $post_type[ 'supports' ] ) && in_array( 'none', $post_type[ 'supports' ] ) ? esc_attr( 'none') : '',
 							'key'     => 'none',
 							'name'    => 'none',
 							'id'      => 'none',
@@ -1047,7 +1038,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'text',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['register_meta_box_cb'] ) ? $post_type['register_meta_box_cb'] : '',
+					'value'             => isset( $post_type[ 'register_meta_box_cb' ] ) ? esc_attr( $post_type[ 'register_meta_box_cb' ]) : '',
 					'key'               => 'register_meta_box_cb',
 					'name'              => 'register-meta-box-cb',
 					'id'                => 'register-meta-box-cb',
@@ -1060,7 +1051,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['has_archive'] ) ? $post_type['has_archive'] : false,
+					'value'             => isset( $post_type[ 'has_archive' ] ) ? esc_attr( $post_type[ 'has_archive' ]) : false,
 					'key'               => 'has_archive',
 					'name'              => 'has-archive',
 					'id'                => 'has-archive',
@@ -1077,7 +1068,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['rewrite'] ) ? $post_type['rewrite'] : false,
+					'value'             => isset( $post_type[ 'rewrite' ] ) ? esc_attr( $post_type[ 'rewrite' ]) : false,
 					'key'               => 'rewrite',
 					'name'              => 'rewrite',
 					'id'                => 'rewrite',
@@ -1094,7 +1085,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'text',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['rewrite_slug'] ) ? $post_type['rewrite_slug'] : '',
+					'value'             => isset( $post_type[ 'rewrite_slug' ] ) ? esc_attr( $post_type[ 'rewrite_slug' ]) : '',
 					'key'               => 'rewrite_slug',
 					'name'              => 'rewrite-slug',
 					'id'                => 'rewrite-slug',
@@ -1107,7 +1098,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['with_front'] ) ? $post_type['with_front'] : false,
+					'value'             => isset( $post_type[ 'with_front' ] ) ? esc_attr( $post_type[ 'with_front' ]) : false,
 					'key'               => 'with_front',
 					'name'              => 'with-front',
 					'id'                => 'with-front',
@@ -1124,7 +1115,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['query_var'] ) ? $post_type['query_var'] : false,
+					'value'             => isset( $post_type[ 'query_var' ] ) ? esc_attr( $post_type[ 'query_var' ]) : false,
 					'key'               => 'query_var',
 					'name'              => 'query-var',
 					'id'                => 'query-var',
@@ -1141,12 +1132,12 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'text',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['query_var_slug'] ) ? $post_type['query_var_slug'] : '',
+					'value'             => isset( $post_type[ 'query_var_slug' ] ) ? esc_attr( $post_type[ 'query_var_slug' ]) : '',
 					'key'               => 'query_var_slug',
 					'name'              => 'query-var-slug',
 					'id'                => 'query-var-slug',
 					'placeholder'       => 'Default: Post Type Slug',
-					'label_description' => 'Custom query var slug to use instead of the default.</br> To use this <b>Query Var</b> should be true.',
+					'label_description' => esc_html__( 'Custom query var slug to use instead of the default.', 'npt' ) . '</br>' . esc_html__( 'To use this ', 'npt' ) . '<b>' . esc_html__( 'Query Var ', 'npt' ) . '</b>' . esc_html__( 'should be true.', 'npt' ),
 					'wrap'              => true,
 				),
 				'can_export'            => array(
@@ -1154,7 +1145,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['can_export'] ) ? $post_type['can_export'] : false,
+					'value'             => isset( $post_type[ 'can_export' ] ) ? esc_attr( $post_type[ 'can_export' ]) : false,
 					'key'               => 'can_export',
 					'name'              => 'can-export',
 					'id'                => 'can-export',
@@ -1171,7 +1162,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'type'              => 'select',
 					'field'             => 'arguments',
 					'group'             => 'arguments',
-					'value'             => isset( $post_type['delete_with_user'] ) ? $post_type['delete_with_user'] : false,
+					'value'             => isset( $post_type[ 'delete_with_user' ] ) ? esc_attr( $post_type[ 'delete_with_user' ]) : false,
 					'key'               => 'delete_with_user',
 					'name'              => 'delete-with-user',
 					'id'                => 'delete-with-user',
@@ -1206,138 +1197,126 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 					'name'              => 'taxonomies',
 					'id'                => 'taxonomies',
 					'label_description' => 'Added support for NPT taxonomies.',
-					'field_description' => '<a href="' . admin_url( 'edit.php?post_type=npt-taxonomy' ) . '">'.$add_more_text.'</a>',
+					'field_description' => '<a href="' . esc_url( admin_url( 'edit.php?post_type=npt-taxonomy' ) ) . '">' . esc_html__( $add_more_text, 'npt' ) . '</a>',
 					'wrap'              => true,
 					'options'           => npt_get_object_taxonomies( $post_type ),
 				),
 			);
 		}
-
+		
 		/**
 		 * all fields of register post type metabox based on attribute "group"
-		 *
 		 * @since   1.0.0
-		 *
 		 * @return array
 		 */
 		public function get_post_type_register_fields() {
 			$args   = $this->npt_post_type_register_fields();
 			$fields = array();
 			foreach ( $args as $arg ) {
-				if ( $arg['group'] == 'register' ) {
+				if ( $arg[ 'group' ] == 'register' ) {
 					$fields[] = $arg;
 				}
 			}
-
+			
 			return $fields;
 		}
-
+		
 		/**
 		 * all fields of post type labels metabox based on attribute "group"
-		 *
 		 * @since   1.0.0
-		 *
 		 * @return array
 		 */
 		public function get_post_type_labels_fields() {
 			$args   = $this->npt_post_type_labels_fields();
 			$fields = array();
 			foreach ( $args as $arg ) {
-				if ( $arg['group'] == 'labels' ) {
+				if ( $arg[ 'group' ] == 'labels' ) {
 					$fields[] = $arg;
 				}
 			}
-
+			
 			return $fields;
 		}
-
+		
 		/**
 		 * all fields of post type attributes metabox based on attribute "group"
-		 *
 		 * @since   1.0.0
-		 *
 		 * @return array
 		 */
 		public function get_post_type_arguments_fields() {
 			$args   = $this->npt_post_type_arguments_fields();
 			$fields = array();
 			foreach ( $args as $arg ) {
-				if ( $arg['group'] == 'arguments' ) {
+				if ( $arg[ 'group' ] == 'arguments' ) {
 					$fields[] = $arg;
 				}
 			}
-
+			
 			return $fields;
 		}
-
+		
 		/**
 		 * Generate register post type metabox form
-		 *
 		 * @since   1.0.0
-		 *
 		 * @return void
 		 */
 		public function register_post_type_form() {
-
+			
 			echo $this->get_container_start( 'settings' );
 			$args = $this->npt_post_type_register_fields();
 			foreach ( $args as $arg ) {
-				if ( $arg['type'] == 'text' ) {
+				if ( $arg[ 'type' ] == 'text' ) {
 					echo $this->get_text_field( $arg );
 				}
-				if ( $arg['type'] == 'radio' ) {
+				if ( $arg[ 'type' ] == 'radio' ) {
 					echo $this->get_radio_field( $arg );
 				}
-				if ( $arg['type'] == 'textarea' ) {
+				if ( $arg[ 'type' ] == 'textarea' ) {
 					echo $this->get_textarea_field( $arg );
 				}
 			}
 			echo $this->get_container_end();
 		}
-
+		
 		/**
 		 * Generate post type labels metabox form
-		 *
 		 * @since   1.0.0
-		 *
 		 * @return void
 		 */
 		public function post_type_labels_form() {
-
+			
 			echo $this->get_container_start( 'settings', 'field-labels' );
 			$args = $this->npt_post_type_labels_fields();
 			foreach ( $args as $arg ) {
-				if ( $arg['type'] == 'text' ) {
+				if ( $arg[ 'type' ] == 'text' ) {
 					echo $this->get_text_field( $arg );
 				}
-				if ( $arg['type'] == 'button' ) {
+				if ( $arg[ 'type' ] == 'button' ) {
 					echo $this->get_button_field( $arg );
 				}
 			}
 			echo $this->get_container_end();
 		}
-
+		
 		/**
 		 * Generate post type arguments metabox form
-		 *
 		 * @since   1.0.0
-		 *
 		 * @return void
 		 */
 		public function post_type_arguments_form() {
 			echo $this->get_container_start( 'settings', 'field-arguments' );
 			$args = $this->npt_post_type_arguments_fields();
 			foreach ( $args as $arg ) {
-				if ( $arg['type'] == 'text' ) {
+				if ( $arg[ 'type' ] == 'text' ) {
 					echo $this->get_text_field( $arg );
 				}
-				if ( $arg['type'] == 'select' ) {
+				if ( $arg[ 'type' ] == 'select' ) {
 					echo $this->get_select_field( $arg );
 				}
-				if ( $arg['type'] == 'checkbox' ) {
+				if ( $arg[ 'type' ] == 'checkbox' ) {
 					echo $this->get_checkbox_field( $arg );
 				}
-				if ( $arg['type'] == 'list' ) {
+				if ( $arg[ 'type' ] == 'list' ) {
 					echo $this->get_list_field( $arg );
 				}
 			}

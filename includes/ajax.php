@@ -18,9 +18,9 @@ function npt_post_type_validation() {
 	 * @var $nounce
 	 * @var $slug
 	 */
-	$nonce = $_POST[ 'nonce' ];
-	$slug  = $_POST[ 'slug' ];
-	$post_type = $_POST[ 'post_type' ];
+	$nonce     = sanitize_text_field( $_POST[ 'nonce' ] );
+	$slug      = sanitize_text_field( $_POST[ 'slug' ] );
+	$post_type = sanitize_text_field( $_POST[ 'post_type' ] );
 	
 	//check if $nounce value is set and verify it.
 	if ( isset( $nonce ) && wp_verify_nonce( $nonce, 'npt_nonce' ) ) {
@@ -29,31 +29,34 @@ function npt_post_type_validation() {
 		 * list of existing post types.
 		 * @var array[] $post_types .
 		 */
-		$all              = array();
+		$all   = array();
 		$alert = '';
 		if ( $post_type == 'npt-post-type' ) {
 			$additional = array( 'action' => 'action', 'author' => 'author', 'order' => 'order', 'theme' => 'theme' );
-			$core    = get_post_types( array( '_builtin' => true ) );
-			$public  = get_post_types( array( '_builtin' => false, 'public' => true ) );
-			$private = get_post_types( array( '_builtin' => false, 'public' => false ) );
-			$all      = array_merge( $additional, $core, $public, $private );
-			$alert = 'Post type';
+			$core       = get_post_types( array( '_builtin' => true ) );
+			$public     = get_post_types( array( '_builtin' => false, 'public' => true ) );
+			$private    = get_post_types( array( '_builtin' => false, 'public' => false ) );
+			$all        = array_merge( $additional, $core, $public, $private );
+			$alert      = 'Post type';
 		}
 		if ( $post_type == 'npt-taxonomy' ) {
 			$core    = get_taxonomies( array( '_builtin' => true ) );
 			$public  = get_taxonomies( array( '_builtin' => false, 'public' => true, ) );
 			$private = get_taxonomies( array( '_builtin' => false, 'public' => false, ) );
 			$all     = array_merge( $core, $public, $private );
-			$alert = 'Taxonomy';
+			$alert   = 'Taxonomy';
 		}
 		
 		//check if $slug is empty and display error text.
 		if ( in_array( $slug, $all ) ) {
 			//Return data in JSON format.
-			$output = json_encode( array( 'type' => 'error', 'text' => '<span class="dashicons dashicons-warning"></span> '.$alert.' slug already exists.' ) );
+			$output = json_encode( array(
+				'type' => 'error',
+				'text' => '<span class="dashicons dashicons-warning"></span> ' . esc_html__( $alert, 'npt' ) . esc_html__( ' slug already exists.', 'npt' )
+			) );
 		} else {
 			//Return data in JSON format.
-			$output = json_encode( array( 'type' => 'success', 'text' => '' ) );
+			$output = json_encode( array( 'type' => 'success', 'text' => esc_html__( '', 'npt' ) ) );
 		}
 		die( $output );
 	}
@@ -72,14 +75,13 @@ function check_npt_change_icon() {
 	 * @var $nounce
 	 * @var $icon
 	 */
-	$nonce = $_POST[ 'nonce' ];
-	$icon  = $_POST[ 'icon' ];
+	$nonce = sanitize_text_field( $_POST[ 'nonce' ] );
+	$icon  = sanitize_text_field( $_POST[ 'icon' ] );
 	
 	//check if $nounce value is set and verify it.
 	if ( isset( $nonce ) && wp_verify_nonce( $nonce, 'npt_nonce' ) ) {
 		if ( $icon ) {
 			//Return data in JSON format.
-			$url    = npt_get_setting( 'url' );
 			$output = json_encode( array(
 				'type' => 'data',
 				'icon' => get_npt_svg_icon( $icon, 30, '#000000' )

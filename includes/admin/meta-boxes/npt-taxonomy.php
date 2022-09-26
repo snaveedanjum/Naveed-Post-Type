@@ -81,8 +81,8 @@ if ( ! class_exists( 'NPT_Taxonomy_Meta_Box' ) ) :
 				}
 			}
 			if ( ! wp_is_post_revision( $post_id ) ) {
-				$post_name  = isset( $_POST['slug'] ) ? esc_html( $_POST['slug'] ) : false;
-				$post_title = isset( $_POST['name'] ) ? esc_html( $_POST['name'] ) : false;
+				$post_name  = isset( $_POST['slug'] ) ? sanitize_text_field( $_POST['slug'] ) : false;
+				$post_title = isset( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : false;
 				global $wpdb;
 				$where = array( 'ID' => $post_id );
 				$wpdb->update( $wpdb->posts, array( 'post_name' => $post_name, 'post_title' => $post_title ), $where );

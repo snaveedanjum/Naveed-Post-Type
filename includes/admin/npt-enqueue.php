@@ -41,7 +41,6 @@ if ( ! class_exists( 'NPT_Enqueue' ) ) :
 			if ( npt_screen( $current_screen ) ) {
 				$url = npt_get_setting('url' );
 				//enqueue CSS file
-				wp_enqueue_style( 'na-cpt-bootstrap-style', $url . 'assets/css/npt-bootstrap.css' );
 				wp_enqueue_style( 'na-cpt-admin-style', $url . 'assets/css/npt-admin.css' );
 			}
 		}
