@@ -15,7 +15,7 @@ Naveed Post Types provides an easy to use interface for registering and managing
 
 ## Plugin development
 
-Naveed Post Types development is managed on GitHub, with official releases published on WordPress.org. The GitHub repo can be found at [https://github.com/snaveedanjum/Naveed-Post-Type](https://github.com/snaveedanjum/Naveed-Post-Type).
+Naveed Post Types development is managed on GitHub, with official releases published on WordPress.org. The GitHub repo can be found at https://github.com/snaveedanjum/naveed-post-types.
 
 ## Changelog
 
