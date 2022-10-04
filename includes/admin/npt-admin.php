@@ -10,6 +10,7 @@ if ( ! class_exists( 'NPT_Admin' ) ) :
 		
 		/**
 		 * Constructor.
+		 *
 		 * @since   1.0.0
 		 * @param void
 		 * @return  void
@@ -22,6 +23,7 @@ if ( ! class_exists( 'NPT_Admin' ) ) :
 		
 		/**
 		 * Adds the NPT menu item.
+		 *
 		 * @since   1.0.0
 		 * @param void
 		 * @return  void
@@ -60,6 +62,7 @@ if ( ! class_exists( 'NPT_Admin' ) ) :
 		
 		/**
 		 * Print admin bar
+		 *
 		 * @since   1.0.0
 		 * @return  void
 		 */
@@ -89,6 +92,7 @@ if ( ! class_exists( 'NPT_Admin' ) ) :
 		
 		/**
 		 * Modifies the admin footer text.
+		 *
 		 * @since   1.0.0
 		 * @param string $text The admin footer text.
 		 * @return  string
@@ -100,6 +104,7 @@ if ( ! class_exists( 'NPT_Admin' ) ) :
 		
 		/**
 		 * Disable auto save drafts
+		 *
 		 * @since   1.0.0
 		 * @return void
 		 */
