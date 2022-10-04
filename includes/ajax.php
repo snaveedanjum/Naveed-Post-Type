@@ -52,11 +52,11 @@ function npt_post_type_validation() {
 			//Return data in JSON format.
 			$output = json_encode( array(
 				'type' => 'error',
-				'text' => '<span class="dashicons dashicons-warning"></span> ' . esc_html__( $alert, 'npt' ) . esc_html__( ' slug already exists.', 'npt' )
+				'text' => '<span class="dashicons dashicons-warning"></span> ' . esc_html( $alert ) . esc_html( ' slug already exists.' )
 			) );
 		} else {
 			//Return data in JSON format.
-			$output = json_encode( array( 'type' => 'success', 'text' => esc_html__( '', 'npt' ) ) );
+			$output = json_encode( array( 'type' => 'success', 'text' => esc_html( '' ) ) );
 		}
 		die( $output );
 	}

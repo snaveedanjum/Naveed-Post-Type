@@ -34,7 +34,7 @@ function npt_add_new_page() {
 					<ul class = "registered-ul">
 						<?php foreach ( $npt_posts as $post ) { ?>
 							<li>
-								<a href = "<?php echo get_edit_post_link( $post->ID ); ?>"><?php echo $post->post_title; ?></a>
+								<a href = "<?php echo get_edit_post_link( $post->ID ); ?>"><?php echo esc_html($post->post_title); ?></a>
 								<a href = "<?php echo get_edit_post_link( $post->ID ); ?>"><span class = "dashicons dashicons-edit-page"></span>Edit</a>
 							</li>
 						<?php } ?>
@@ -73,7 +73,7 @@ function npt_add_new_page() {
 					<ul class = "registered-ul">
 						<?php foreach ( $npt_taxonomy as $taxonomy ) { ?>
 							<li>
-								<a href = "<?php echo get_edit_post_link( $taxonomy->ID ); ?>"><?php echo $taxonomy->post_title; ?></a>
+								<a href = "<?php echo get_edit_post_link( $taxonomy->ID ); ?>"><?php echo esc_html($taxonomy->post_title); ?></a>
 								<a href = "<?php echo get_edit_post_link( $taxonomy->ID ); ?>"><span class = "dashicons dashicons-edit-page"></span>Edit</a>
 							</li>
 						<?php } ?>

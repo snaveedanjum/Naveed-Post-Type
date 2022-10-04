@@ -55,7 +55,7 @@ function npt_get_taxonomies( $post_type ) {
 					'key'     => $taxonomy->name,
 					'name'    => $taxonomy->name,
 					'id'      => $taxonomy->name,
-					'label'   => esc_html__( $taxonomy->label, 'npt' ),
+					'label'   => esc_html( $taxonomy->label ),
 					'default' => false,
 				)
 			);
@@ -85,7 +85,7 @@ function npt_get_object_taxonomies( $post_type ) {
 			$fields[]        = array(
 				array(
 					'link'  => get_edit_post_link( $post_id ),
-					'label' => esc_html__( $selected_tax->post_title, 'npt' ),
+					'label' => esc_html( $selected_tax->post_title ),
 				)
 			);
 			$taxonomy_fields = call_user_func_array( 'array_merge', $fields );
@@ -119,7 +119,7 @@ function npt_get_post_types( $taxonomies ) {
 				'key'     => $post->name,
 				'name'    => $post->name,
 				'id'      => $post->name,
-				'label'   => esc_html__( $post->labels->singular_name . ' ' . $core_label, 'npt' ),
+				'label'   => esc_html( $post->labels->singular_name . ' ' . $core_label ),
 				'default' => false,
 			)
 		);
@@ -141,7 +141,7 @@ function npt_get_text_fields( $post_meta, $field ) {
 	$fields = array();
 	foreach ( $post_meta as $val ) {
 		if ( is_array( $val ) && $val[ 'field' ] == $field && $val[ 'type' ] == 'text' ) {
-			$value    = isset( $_POST[ $val[ 'name' ] ] ) ? esc_html( $_POST[ $val[ 'name' ] ] ) : false;
+			$value    = isset( $_POST[ $val[ 'name' ] ] ) ? sanitize_text_field( $_POST[ $val[ 'name' ] ] ) : false;
 			$fields[] = array( $val[ 'key' ] => $value );
 		}
 	}
@@ -161,7 +161,7 @@ function npt_get_radio_fields( $post_meta, $field ) {
 	$fields = array();
 	foreach ( $post_meta as $val ) {
 		if ( is_array( $val ) && $val[ 'field' ] == $field && $val[ 'type' ] == 'radio' ) {
-			$value    = isset( $_POST[ $val[ 'name' ] ] ) ? esc_html( $_POST[ $val[ 'name' ] ] ) : false;
+			$value    = isset( $_POST[ $val[ 'name' ] ] ) ? sanitize_text_field( $_POST[ $val[ 'name' ] ] ) : false;
 			$fields[] = array( $val[ 'key' ] => $value );
 		}
 	}
@@ -181,7 +181,7 @@ function npt_get_textarea_fields( $post_meta, $field ) {
 	$fields = array();
 	foreach ( $post_meta as $val ) {
 		if ( is_array( $val ) && $val[ 'field' ] == $field && $val[ 'type' ] == 'textarea' ) {
-			$value    = isset( $_POST[ $val[ 'name' ] ] ) ? esc_html( $_POST[ $val[ 'name' ] ] ) : false;
+			$value    = isset( $_POST[ $val[ 'name' ] ] ) ? sanitize_text_field( $_POST[ $val[ 'name' ] ] ) : false;
 			$fields[] = array( $val[ 'key' ] => $value );
 		}
 	}
@@ -201,7 +201,7 @@ function npt_get_select_fields( $post_meta, $field ) {
 	$fields = array();
 	foreach ( $post_meta as $val ) {
 		if ( is_array( $val ) && $val[ 'field' ] == $field && $val[ 'type' ] == 'select' ) {
-			$value    = isset( $_POST[ $val[ 'name' ] ] ) ? esc_html( $_POST[ $val[ 'name' ] ] ) : false;
+			$value    = isset( $_POST[ $val[ 'name' ] ] ) ? sanitize_text_field( $_POST[ $val[ 'name' ] ] ) : false;
 			$fields[] = array( $val[ 'key' ] => (bool) $value );
 		}
 	}
@@ -224,7 +224,7 @@ function npt_get_checkbox_fields( $post_meta, $field, $key ) {
 		if ( is_array( $values ) && $values[ 'field' ] == $field && $values[ 'type' ] == 'checkbox' && $values[ 'key' ] == $key ) {
 			foreach ( $values[ 'options' ] as $option ) {
 				if ( is_array( $option ) && array_key_exists( 'name', $option ) ) {
-					$value = isset( $_POST[ $option[ 'name' ] ] ) ? esc_html( $_POST[ $option[ 'name' ] ] ) : false;
+					$value = isset( $_POST[ $option[ 'name' ] ] ) ? sanitize_text_field( $_POST[ $option[ 'name' ] ] ) : false;
 					if ( $value ) {
 						$fields[] = array( $value );
 					}
@@ -641,15 +641,15 @@ function npt_post_type_custom_column_content( $column, $post_id ) {
 		case 'menu-label' :
 			$post_type = get_post_meta( $post_id, 'npt_post_type', true );
 			if ( $post_type ) {
-				echo '<span class="list-table-icon">' . get_npt_svg_icon( $post_type[ 'menu_icon' ], 18, '#50575e' ) . ' ' . esc_html__( $post_type[ 'labels' ][ 'menu_name' ], 'npt' ) . '</span>';
+				echo '<span class="list-table-icon">' . get_npt_svg_icon( $post_type[ 'menu_icon' ], 18, '#50575e' ) . ' ' . esc_html( $post_type[ 'labels' ][ 'menu_name' ] ) . '</span>';
 			} else {
-				esc_html__( 'Unable to get slug', 'npt' );
+				esc_html( 'Unable to get slug' );
 			}
 			break;
 		case 'slug' :
 			$post_type = get_post_meta( $post_id, 'npt_post_type', true );
 			if ( $post_type[ 'slug' ] ) {
-				echo $post_type[ 'slug' ];
+				echo esc_html( $post_type[ 'slug' ]);
 			} else {
 				_e( '<span aria-hidden="true">—</span>', 'npt' );
 			}
@@ -669,13 +669,13 @@ function npt_post_type_custom_column_content( $column, $post_id ) {
 						if ( $taxonomy == 'post_tag' ) {
 							$tax_label = 'Post Tags';
 						}
-						echo '<span style="margin-right: 15px;">  ' . esc_html__( $tax_label, 'npt' ) . ' </span>';
+						echo '<span style="margin-right: 15px;">  ' . esc_html( $tax_label ) . ' </span>';
 					}
 				}
 				foreach ( $taxonomies as $taxonomy ) {
 					$npt_taxonomy_id = get_page_by_path( $taxonomy->name, OBJECT, 'npt-taxonomy' );
 					$selected_tax    = get_post( $npt_taxonomy_id );
-					echo '<a style="margin-right: 15px;" href="' . get_edit_post_link( $npt_taxonomy_id ) . '"> ' . esc_html__( $selected_tax->post_title, 'npt' ) . ' </a>';
+					echo '<a style="margin-right: 15px;" href="' . get_edit_post_link( $npt_taxonomy_id ) . '"> ' . esc_html( $selected_tax->post_title ) . ' </a>';
 				}
 			}
 			if ( empty( $post_type[ 'taxonomies' ] ) && empty( $taxonomies ) ) {
@@ -686,7 +686,7 @@ function npt_post_type_custom_column_content( $column, $post_id ) {
 		case 'description' :
 			$post_type = get_post_meta( $post_id, 'npt_post_type', true );
 			if ( $post_type[ 'description' ] ) {
-				echo esc_html__( $post_type[ 'description' ], 'npt' );
+				echo esc_html( $post_type[ 'description' ] );
 			} else {
 				_e( '<span aria-hidden="true">—</span>', 'npt' );
 			}
@@ -749,7 +749,7 @@ function npt_taxonomy_custom_column_content( $column, $post_id ) {
 		case 'slug' :
 			$taxonomies = get_post_meta( $post_id, 'npt_taxonomy', true );
 			if ( $taxonomies ) {
-				echo esc_html__( $taxonomies[ 'slug' ], 'npt' );
+				echo esc_html( $taxonomies[ 'slug' ] );
 			} else {
 				_e( '<span aria-hidden="true">—</span>', 'npt' );
 			}
@@ -774,11 +774,11 @@ function npt_taxonomy_custom_column_content( $column, $post_id ) {
 						if ( $post == 'attachment' ) {
 							$post_type_label = 'Attachments';
 						}
-						echo '<span style="margin-right: 15px;">' . esc_html__( $post_type_label, 'npt' ) . '</span>';
+						echo '<span style="margin-right: 15px;">' . esc_html( $post_type_label) . '</span>';
 					} else {
 						$npt_post_type_id   = get_page_by_path( $post, OBJECT, 'npt-post-type' );
 						$selected_post_type = get_post( $npt_post_type_id );
-						echo '<a style="margin-right: 15px;" href="' . get_edit_post_link( $npt_post_type_id ) . '">' . esc_html__( $selected_post_type->post_title, 'npt' ) . '</a>';
+						echo '<a style="margin-right: 15px;" href="' . get_edit_post_link( $npt_post_type_id ) . '">' . esc_html( $selected_post_type->post_title ) . '</a>';
 					}
 				}
 			} else {
@@ -807,7 +807,7 @@ add_action( 'manage_npt-taxonomy_posts_custom_column', 'npt_taxonomy_custom_colu
  * @return string
  */
 function npt_html( $text, $html_tag ) {
-	return '<' . $html_tag . '>' . esc_html__( $text, 'npt' ) . '</' . $html_tag . '>';
+	return '<' . $html_tag . '>' . esc_html( $text ) . '</' . $html_tag . '>';
 }
 
 /**
@@ -826,7 +826,7 @@ function npt_text_plusing( $singular_text, $plural_text, $post_type ) {
 		$text = $singular_text;
 	}
 	
-	return esc_html__( $text, 'npt' );
+	return esc_html( $text );
 }
 
 /**
@@ -843,5 +843,5 @@ function npt_have_post_text( $text, $post_type ) {
 		$hve_text = $text;
 	}
 	
-	return esc_html__( $hve_text, 'npt' );
+	return esc_html( $hve_text );
 }
