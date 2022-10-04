@@ -7,7 +7,7 @@ Stable tag: 1.0.0
 License: GPL-2.0+
 Requires PHP: 5.6
 
-Naveed Post Types is an elegant way to create custom post types and custom taxonomies in WordPress
+Naveed Post Types is an elegant way to create custom post types and custom taxonomies in WordPress.
 
 ## Description
 
