@@ -1280,6 +1280,7 @@ if ( ! class_exists( 'NPT_Post_Type_Form' ) ) :
 		
 		/**
 		 * Generate post type labels metabox form
+		 *
 		 * @since   1.0.0
 		 * @return void
 		 */
