@@ -152,6 +152,5 @@ if ( ! class_exists( 'NPT_Post_Type_Meta_Box' ) ) :
 			wp_nonce_field( 'npt-post-type', 'npt-post-type-nounce' );
 			$this->post_type_arguments_form();
 		}
-
 	}
 endif;
