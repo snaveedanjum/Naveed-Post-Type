@@ -390,8 +390,6 @@ div#submitdiv {
     width: 15%;
 }
 
-
-
 div#postbox-container-2 {
     width: 629px;
     margin-right: 20px;
@@ -403,7 +401,6 @@ div#postbox-container-2 {
 .settings ul li a{
     text-decoration: none;
 }
-
 
 .registered-post-outer{
     display: flex;
