@@ -1077,6 +1077,7 @@ if ( ! class_exists( 'NPT_Taxonomy_Form' ) ) :
 		
 		/**
 		 * Generate taxonomy arguments metabox form
+		 *
 		 * @since   1.0.0
 		 * @return void
 		 */
