@@ -15,6 +15,7 @@
 function npt_post_type_validation() {
 	/**
 	 * assigning $nounce, $slug values.
+	 *
 	 * @var $nounce
 	 * @var $slug
 	 */
@@ -27,6 +28,7 @@ function npt_post_type_validation() {
 		
 		/**
 		 * list of existing post types.
+		 *
 		 * @var array[] $post_types .
 		 */
 		$all   = array();
