@@ -62,6 +62,7 @@ if ( ! class_exists( 'NPT_Enqueue' ) ) :
 			// check if current page is 'naveed-post-types', 'npt-post-type', 'npt-taxonomy' and load  JS file
 			if ( npt_screen( $current_screen ) ) {
 				$url = npt_get_setting('url' );
+				
 				//Register JS file
 				wp_register_script( 'npt-admin-script', $url . 'assets/js/npt-admin.js' );
 				
