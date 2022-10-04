@@ -215,7 +215,7 @@ if ( ! class_exists( 'NPT' ) ) :
 			$posts = get_posts( $args );
 			foreach ( $posts as $post ) {
 				/**
-				 * @var array $value
+				 * @var array $data
 				 */
 				$data = get_post_meta( $post->ID, 'npt_post_type', true );
 				npt_post_types( $data );
@@ -238,7 +238,7 @@ if ( ! class_exists( 'NPT' ) ) :
 			$taxonomies = get_posts( $args );
 			foreach ( $taxonomies as $taxonomy ) {
 				/**
-				 * @var array $value
+				 * @var array $data
 				 */
 				$data = get_post_meta( $taxonomy->ID, 'npt_taxonomy', true );
 				npt_taxonomes( $data );
