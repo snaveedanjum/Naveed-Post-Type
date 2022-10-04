@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 /**
  * Generate HTML for Home page
+ *
  * @return void
  */
 function npt_add_new_page() {
