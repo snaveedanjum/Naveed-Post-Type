@@ -3,6 +3,7 @@
 /**
  *  npt_get_setting
  *  alias of npt()->get_setting()
+ *
  * @since   1.0.0
  * @param $name
  * @return mixed|null $name
@@ -14,6 +15,7 @@ function npt_get_setting( $name ) {
 
 /**
  * npt_screen
+ *
  * @since   1.0.0
  * @param   $screen
  * @return mixed|void $screen
@@ -32,6 +34,7 @@ function npt_screen( $screen ) {
 
 /**
  * get the list of WordPress core taxonomies.
+ *
  * @since   1.0.0
  * @param $post_type
  * @return array|mixed
