@@ -147,6 +147,5 @@ if ( ! class_exists( 'NPT_Taxonomy_Meta_Box' ) ) :
 			wp_nonce_field( 'npt-taxonomy', 'npt-taxonomy-nounce' );
 			$this->taxonomy_arguments_form();
 		}
-
 	}
 endif;
