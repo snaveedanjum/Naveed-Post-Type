@@ -19,6 +19,9 @@ Naveed Post Types development is managed on GitHub, with official releases publi
 
 ## Changelog
 
+###  1.0.1
+* Bug fixed for unlimeted custom post types.
+
 ###  1.0.0
 * Our first stable version.
 
