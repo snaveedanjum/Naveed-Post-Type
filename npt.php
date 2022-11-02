@@ -3,7 +3,7 @@
  * Plugin Name: Naveed Post Types
  * Plugin URI: #
  * Description: An elegant way to create custom post types and custom taxonomies in WordPress
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Naveed Anjum
  * Author URI: https://naveedanjum.info
  * Text Domain: npt
@@ -211,6 +211,7 @@ if ( ! class_exists( 'NPT' ) ) :
 			$args  = array(
 				'post_type'   => 'npt-post-type',
 				'post_status' => 'publish',
+				'numberposts' => -1,
 			);
 			$posts = get_posts( $args );
 			foreach ( $posts as $post ) {
@@ -234,6 +235,7 @@ if ( ! class_exists( 'NPT' ) ) :
 			$args       = array(
 				'post_type'   => 'npt-taxonomy',
 				'post_status' => 'publish',
+				'numberposts' => -1,
 			);
 			$taxonomies = get_posts( $args );
 			foreach ( $taxonomies as $taxonomy ) {
